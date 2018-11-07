@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/tenants")
 public class TenantResource {
@@ -49,7 +51,7 @@ public class TenantResource {
     return tenantOptional.get();
   }
 
-  @GetMapping("/")
+  @GetMapping
   public List<Tenant> findTenants() {
     return tenantService.findAll();
   }
@@ -73,7 +75,7 @@ public class TenantResource {
     return ResponseEntity.noContent().build();
   }
 
-  @PostMapping("/")
+  @PostMapping
 //  @PreAuthorize("hasRole('ADMIN')")
   public ResponseEntity<Object> createTenant(@RequestBody Tenant tenant) {
     Tenant savedTenant = tenantService.save(tenant);

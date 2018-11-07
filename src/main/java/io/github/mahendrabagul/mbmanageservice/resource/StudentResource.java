@@ -25,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/students")
 @Slf4j
@@ -57,13 +59,13 @@ public class StudentResource {
     return studentOptional.get();
   }
 
-  @GetMapping("/")
+  @GetMapping("/list")
   public List<Student> findStudents() {
     return studentService.findAll();
   }
 
   @GetMapping
-  public ResponseEntity<List<Student>> getAllStudent(Pageable pageable) {
+  public ResponseEntity<List<Student>> getAllStudents(Pageable pageable) {
     log.debug("REST request to get a page of Students : " + pageable);
     Page<Student> page = studentService.findAll(pageable);
     HttpHeaders headers = PaginationUtil
@@ -89,7 +91,7 @@ public class StudentResource {
     return ResponseEntity.noContent().build();
   }
 
-  @PostMapping("/")
+  @PostMapping
   public ResponseEntity<Object> createStudent(@RequestBody Student student) {
     Student savedStudent = studentService.save(student);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{studentId}")
