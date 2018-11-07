@@ -11,8 +11,6 @@
 
 package io.github.mahendrabagul.mbmanageservice.model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,26 +22,31 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "tenants")
+@Table(name = "students")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Tenant extends AuditModel {
+public class Student extends AuditModel {
 
   @Id
   @GeneratedValue(generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
-  @Column(name = "tenant_id")
-  private String tenantId;
+  @Column(name = "student_id")
+  private String studentId;
 
-  @Column(name = "tenant_name", unique = true)
-  private String tenantName;
+  @Column(name = "role_number", unique = true)
+  private String roleNumber;
 
-  @Column(name = "tenant_city")
+  @Column(name = "degree")
+  private String degree;
+
+  @Column(name = "admission_year")
+  private String admissionYear;
+
+  @Column(name = "city")
   private String city;
 
-  @Column(name = "tenant_type")
-  private String type;
+  @Column(name = "fullName")
+  private String fullName;
 
 }
