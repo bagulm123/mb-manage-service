@@ -9,22 +9,35 @@
  *  ******************************************************
  */
 
-package io.github.mahendrabagul.mbmanageservice.request;
+package io.github.mahendrabagul.mbmanageservice.objects.request;
 
+import java.util.Set;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-public class LoginForm {
+public class SignUpForm {
 
   @NotBlank
-  @Size(min = 3, max = 60)
+  @Size(min = 3, max = 50)
+  private String name;
+
+  @NotBlank
+  @Size(min = 3, max = 50)
   private String userName;
 
   @NotBlank
-  @Size(min = 3, max = 60)
-  private String tenantId;
+  @Size(max = 60)
+  @Email
+  private String email;
+
+  @NotBlank
+  @Size(max = 60)
+  private String tenantName;
+
+  private Set<String> role;
 
   @NotBlank
   @Size(min = 6, max = 40)

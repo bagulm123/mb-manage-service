@@ -12,7 +12,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.repository;
 
-import io.github.mahendrabagul.mbmanageservice.model.User;
+import io.github.mahendrabagul.mbmanageservice.objects.model.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

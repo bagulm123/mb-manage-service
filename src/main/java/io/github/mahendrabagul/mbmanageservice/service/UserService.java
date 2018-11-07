@@ -11,7 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.service;
 
-import io.github.mahendrabagul.mbmanageservice.model.User;
+import io.github.mahendrabagul.mbmanageservice.objects.model.User;
 import java.util.List;
 import java.util.Optional;
 

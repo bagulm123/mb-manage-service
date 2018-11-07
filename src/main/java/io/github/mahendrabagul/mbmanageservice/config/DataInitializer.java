@@ -11,12 +11,12 @@
 
 package io.github.mahendrabagul.mbmanageservice.config;
 
-import static io.github.mahendrabagul.mbmanageservice.model.RoleName.ROLE_ADMIN;
-import static io.github.mahendrabagul.mbmanageservice.model.RoleName.ROLE_CLERK;
-import static io.github.mahendrabagul.mbmanageservice.model.RoleName.ROLE_SENIOR;
+import static io.github.mahendrabagul.mbmanageservice.objects.model.RoleName.ROLE_ADMIN;
+import static io.github.mahendrabagul.mbmanageservice.objects.model.RoleName.ROLE_CLERK;
+import static io.github.mahendrabagul.mbmanageservice.objects.model.RoleName.ROLE_SENIOR;
 
-import io.github.mahendrabagul.mbmanageservice.model.Role;
-import io.github.mahendrabagul.mbmanageservice.model.RoleName;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Role;
+import io.github.mahendrabagul.mbmanageservice.objects.model.RoleName;
 import io.github.mahendrabagul.mbmanageservice.service.RoleService;
 import java.util.Arrays;
 import java.util.List;

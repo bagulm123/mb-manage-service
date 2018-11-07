@@ -12,7 +12,7 @@
 package io.github.mahendrabagul.mbmanageservice.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.github.mahendrabagul.mbmanageservice.model.User;
+import io.github.mahendrabagul.mbmanageservice.objects.model.User;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;

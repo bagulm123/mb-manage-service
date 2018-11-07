@@ -11,6 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.security;
 
+import io.github.mahendrabagul.mbmanageservice.util.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -33,9 +34,6 @@ public class JwtProvider {
   @Value("${mb.manage.app.jwtSecret}")
   private String jwtSecret;
 
-  @Value("${mb.manage.app.jwtExpiration}")
-  private int jwtExpiration;
-
   @Value("${mb.manage.app.jwtIssuer}")
   private String issuer;
 
@@ -48,7 +46,8 @@ public class JwtProvider {
         .setClaims(claims)
         .setIssuer(issuer)
         .setIssuedAt(new Date())
-        .setExpiration(new Date((new Date()).getTime() + jwtExpiration))
+        .setExpiration(
+            new Date(System.currentTimeMillis() + Constants.ACCESS_TOKEN_VALIDITY_SECONDS * 1000))
         .signWith(SignatureAlgorithm.HS512, jwtSecret)
         .compact();
   }

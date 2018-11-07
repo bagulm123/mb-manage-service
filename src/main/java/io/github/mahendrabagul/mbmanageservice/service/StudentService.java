@@ -11,7 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.service;
 
-import io.github.mahendrabagul.mbmanageservice.model.Student;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

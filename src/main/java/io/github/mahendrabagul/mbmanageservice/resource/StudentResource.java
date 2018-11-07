@@ -12,7 +12,7 @@
 package io.github.mahendrabagul.mbmanageservice.resource;
 
 import io.github.mahendrabagul.mbmanageservice.exception.ResourceNotFoundException;
-import io.github.mahendrabagul.mbmanageservice.model.Student;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
 import io.github.mahendrabagul.mbmanageservice.service.StudentService;
 import io.github.mahendrabagul.mbmanageservice.util.PaginationUtil;
 import java.net.URI;

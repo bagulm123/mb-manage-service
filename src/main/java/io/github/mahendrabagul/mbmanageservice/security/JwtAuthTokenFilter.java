@@ -11,6 +11,9 @@
 
 package io.github.mahendrabagul.mbmanageservice.security;
 
+import static io.github.mahendrabagul.mbmanageservice.util.Constants.AUTHORIZATION;
+import static io.github.mahendrabagul.mbmanageservice.util.Constants.TOKEN_PREFIX;
+
 import io.github.mahendrabagul.mbmanageservice.service.impl.UserDetailsServiceImpl;
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -69,10 +72,10 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
   }
 
   private String getJwt(HttpServletRequest request) {
-    String authHeader = request.getHeader("Authorization");
+    String authHeader = request.getHeader(AUTHORIZATION);
 
-    if (authHeader != null && authHeader.startsWith("Bearer ")) {
-      return authHeader.replace("Bearer ", "");
+    if (authHeader != null && authHeader.startsWith(TOKEN_PREFIX)) {
+      return authHeader.replace(TOKEN_PREFIX, "");
     }
 
     return null;

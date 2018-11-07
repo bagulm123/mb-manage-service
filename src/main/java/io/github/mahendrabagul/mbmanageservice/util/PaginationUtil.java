@@ -11,6 +11,8 @@
 
 package io.github.mahendrabagul.mbmanageservice.util;
 
+import static io.github.mahendrabagul.mbmanageservice.util.Constants.X_TOTAL_COUNT;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import org.springframework.data.domain.Page;
@@ -22,7 +24,6 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 public final class PaginationUtil {
 
-  private static final String X_TOTAL_COUNT = "X-Total-Count";
 
   private PaginationUtil() {
   }

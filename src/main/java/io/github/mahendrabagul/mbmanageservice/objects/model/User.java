@@ -9,9 +9,8 @@
  *  ******************************************************
  */
 
-package io.github.mahendrabagul.mbmanageservice.model;
+package io.github.mahendrabagul.mbmanageservice.objects.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;

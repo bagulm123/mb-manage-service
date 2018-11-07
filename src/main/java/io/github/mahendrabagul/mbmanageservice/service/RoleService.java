@@ -11,8 +11,8 @@
 
 package io.github.mahendrabagul.mbmanageservice.service;
 
-import io.github.mahendrabagul.mbmanageservice.model.Role;
-import io.github.mahendrabagul.mbmanageservice.model.RoleName;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Role;
+import io.github.mahendrabagul.mbmanageservice.objects.model.RoleName;
 import java.util.List;
 import java.util.Optional;
 

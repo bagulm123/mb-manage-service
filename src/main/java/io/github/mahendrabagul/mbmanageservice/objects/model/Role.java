@@ -9,7 +9,7 @@
  *  ******************************************************
  */
 
-package io.github.mahendrabagul.mbmanageservice.model;
+package io.github.mahendrabagul.mbmanageservice.objects.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "roles")
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class Role extends AuditModel{
+public class Role extends AuditModel {
 
   @Id
   @GeneratedValue(generator = "system-uuid")

@@ -11,8 +11,8 @@
 
 package io.github.mahendrabagul.mbmanageservice.repository;
 
-import io.github.mahendrabagul.mbmanageservice.model.Role;
-import io.github.mahendrabagul.mbmanageservice.model.RoleName;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Role;
+import io.github.mahendrabagul.mbmanageservice.objects.model.RoleName;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

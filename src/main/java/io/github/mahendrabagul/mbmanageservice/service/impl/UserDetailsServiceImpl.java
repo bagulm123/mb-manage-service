@@ -11,7 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.service.impl;
 
-import io.github.mahendrabagul.mbmanageservice.model.User;
+import io.github.mahendrabagul.mbmanageservice.objects.model.User;
 import io.github.mahendrabagul.mbmanageservice.repository.UserRepository;
 import io.github.mahendrabagul.mbmanageservice.security.UserPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;

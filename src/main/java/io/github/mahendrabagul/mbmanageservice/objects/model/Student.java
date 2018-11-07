@@ -9,7 +9,7 @@
  *  ******************************************************
  */
 
-package io.github.mahendrabagul.mbmanageservice.model;
+package io.github.mahendrabagul.mbmanageservice.objects.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

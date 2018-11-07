@@ -11,7 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.service;
 
-import io.github.mahendrabagul.mbmanageservice.model.Tenant;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Tenant;
 import java.util.List;
 import java.util.Optional;
 

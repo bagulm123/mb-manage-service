@@ -11,13 +11,13 @@
 
 package io.github.mahendrabagul.mbmanageservice.resource;
 
-import io.github.mahendrabagul.mbmanageservice.model.Role;
-import io.github.mahendrabagul.mbmanageservice.model.RoleName;
-import io.github.mahendrabagul.mbmanageservice.model.Tenant;
-import io.github.mahendrabagul.mbmanageservice.model.User;
-import io.github.mahendrabagul.mbmanageservice.request.LoginForm;
-import io.github.mahendrabagul.mbmanageservice.request.SignUpForm;
-import io.github.mahendrabagul.mbmanageservice.response.JwtResponse;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Role;
+import io.github.mahendrabagul.mbmanageservice.objects.model.RoleName;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Tenant;
+import io.github.mahendrabagul.mbmanageservice.objects.model.User;
+import io.github.mahendrabagul.mbmanageservice.objects.request.LoginForm;
+import io.github.mahendrabagul.mbmanageservice.objects.request.SignUpForm;
+import io.github.mahendrabagul.mbmanageservice.objects.response.JwtResponse;
 import io.github.mahendrabagul.mbmanageservice.security.JwtProvider;
 import io.github.mahendrabagul.mbmanageservice.service.RoleService;
 import io.github.mahendrabagul.mbmanageservice.service.TenantService;
@@ -87,12 +87,12 @@ public class AuthenticationResource {
   @PostMapping("/signup")
   public ResponseEntity<String> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
     if (userService.existsByUserName(signUpRequest.getUserName())) {
-      return new ResponseEntity<String>("Fail -> Username is already taken!",
+      return new ResponseEntity<>("Fail -> Username is already taken!",
           HttpStatus.BAD_REQUEST);
     }
 
     if (userService.existsByEmail(signUpRequest.getEmail())) {
-      return new ResponseEntity<String>("Fail -> Email is already in use!",
+      return new ResponseEntity<>("Fail -> Email is already in use!",
           HttpStatus.BAD_REQUEST);
     }
 

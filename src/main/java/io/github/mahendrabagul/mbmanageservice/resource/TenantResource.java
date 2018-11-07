@@ -12,7 +12,7 @@
 package io.github.mahendrabagul.mbmanageservice.resource;
 
 import io.github.mahendrabagul.mbmanageservice.exception.ResourceNotFoundException;
-import io.github.mahendrabagul.mbmanageservice.model.Tenant;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Tenant;
 import io.github.mahendrabagul.mbmanageservice.service.TenantService;
 import java.net.URI;
 import java.util.List;

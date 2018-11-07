@@ -11,7 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.service.impl;
 
-import io.github.mahendrabagul.mbmanageservice.model.Student;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
 import io.github.mahendrabagul.mbmanageservice.repository.StudentRepository;
 import io.github.mahendrabagul.mbmanageservice.service.StudentService;
 import java.util.List;

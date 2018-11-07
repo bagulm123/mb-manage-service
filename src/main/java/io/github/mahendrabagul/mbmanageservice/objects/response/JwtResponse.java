@@ -9,7 +9,7 @@
  *  ******************************************************
  */
 
-package io.github.mahendrabagul.mbmanageservice.response;
+package io.github.mahendrabagul.mbmanageservice.objects.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
