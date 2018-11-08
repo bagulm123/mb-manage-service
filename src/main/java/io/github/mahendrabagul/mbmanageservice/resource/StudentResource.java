@@ -67,9 +67,11 @@ public class StudentResource {
 
   @GetMapping
   public ResponseEntity<List<Student>> getAllStudents(Pageable pageable,
-      @RequestParam String tenantId) {
-    log.debug("REST request to get a page of Students : {} by tenantId : {}", pageable, tenantId);
-    Page<Student> page = studentService.findByTenant(pageable, tenantId);
+      @RequestParam String tenantId, @RequestParam String searchKeyWord) {
+    log.debug(
+        "REST request to get a page of Students : {} by tenantId : {} and optional searchString : {}",
+        pageable, tenantId, searchKeyWord);
+    Page<Student> page = studentService.findByTenant(pageable, tenantId, searchKeyWord);
     HttpHeaders headers = PaginationUtil
         .generatePaginationHttpHeaders(page, String.format(URI));
     return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

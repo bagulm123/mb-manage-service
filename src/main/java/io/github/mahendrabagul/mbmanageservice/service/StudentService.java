@@ -27,7 +27,7 @@ public interface StudentService {
 
   Optional<Student> findById(String studentId);
 
-  Page<Student> findByTenant(Pageable pageable, String tenantId);
+  Page<Student> findByTenant(Pageable pageable, String tenantId, String searchKeyWord);
 
   void deleteById(String studentId);
 }

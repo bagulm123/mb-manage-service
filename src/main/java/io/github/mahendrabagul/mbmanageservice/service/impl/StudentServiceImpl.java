@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 @Slf4j
@@ -138,8 +139,13 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public Page<Student> findByTenant(Pageable pageable, String tenantId) {
-    return studentRepository.findByTenant_TenantId(pageable, tenantId);
+  public Page<Student> findByTenant(Pageable pageable, String tenantId, String searchKeyWord) {
+    if (StringUtils.isEmpty(searchKeyWord)) {
+      return studentRepository.findByTenant_TenantId(pageable, tenantId);
+    } else {
+      return studentRepository
+          .findByTenantIdAndFullName(pageable, tenantId, searchKeyWord.toLowerCase());
+    }
   }
 
   @Override
