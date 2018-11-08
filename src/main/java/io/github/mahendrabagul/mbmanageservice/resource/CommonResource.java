@@ -13,6 +13,7 @@ package io.github.mahendrabagul.mbmanageservice.resource;
 
 import io.github.mahendrabagul.mbmanageservice.objects.model.Tenant;
 import io.github.mahendrabagul.mbmanageservice.service.TenantService;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +42,26 @@ public class CommonResource {
   @GetMapping("/allCommonData")
   public ResponseEntity<Map<String, Object>> getAllCommonData() {
     log.debug("REST request to get getAllCommonData");
-    List<Tenant> tenants = tenantService.findAll();
+    List<String> degrees = new ArrayList<>();
+    degrees.add("B.TECH");
+    degrees.add("B.E.");
+    degrees.add("BCS");
+    degrees.add("MCS");
+    degrees.add("M.TECH");
+    degrees.add("M.E.");
+    degrees.add("PHD");
+    List<String> years = new ArrayList<>();
+    years.add("First");
+    years.add("Second");
     Map<String, Object> map = new HashMap<>();
-    map.put("tenants", tenants);
+    map.put("years", years);
+    map.put("degrees", degrees);
+    List<Tenant> tenants = tenantService.findAll();
+    List<String> tenantNames = new ArrayList<>();
+    tenants.forEach(tenant -> {
+      tenantNames.add(tenant.getTenantName());
+    });
+    map.put("tenantNames", tenantNames);
     return new ResponseEntity<>(map, HttpStatus.OK);
   }
 

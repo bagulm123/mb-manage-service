@@ -47,7 +47,7 @@ public class JwtProvider {
         .setIssuer(issuer)
         .setIssuedAt(new Date())
         .setExpiration(
-            new Date(System.currentTimeMillis() + Constants.ACCESS_TOKEN_VALIDITY_SECONDS * 1000))
+            new Date(System.currentTimeMillis() + Constants.ACCESS_TOKEN_VALIDITY_SECONDS * 10000))
         .signWith(SignatureAlgorithm.HS512, jwtSecret)
         .compact();
   }

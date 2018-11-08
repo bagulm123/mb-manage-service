@@ -20,8 +20,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
 
-  Optional<Student> findByRoleNumber(String roleNumber);
+  Optional<Student> findByRollNumber(String rollNumber);
 
-  Boolean existsByRoleNumber(String roleNumber);
+  Boolean existsByRollNumber(String rollNumber);
 
 }

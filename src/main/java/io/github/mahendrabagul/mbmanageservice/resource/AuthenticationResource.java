@@ -19,6 +19,7 @@ import io.github.mahendrabagul.mbmanageservice.objects.request.LoginForm;
 import io.github.mahendrabagul.mbmanageservice.objects.request.SignUpForm;
 import io.github.mahendrabagul.mbmanageservice.objects.response.AuthToken;
 import io.github.mahendrabagul.mbmanageservice.security.JwtProvider;
+import io.github.mahendrabagul.mbmanageservice.security.UserPrinciple;
 import io.github.mahendrabagul.mbmanageservice.service.RoleService;
 import io.github.mahendrabagul.mbmanageservice.service.TenantService;
 import io.github.mahendrabagul.mbmanageservice.service.UserService;
@@ -33,6 +34,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -80,8 +82,13 @@ public class AuthenticationResource {
             loginRequest.getPassword()
         )
     );
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    return ResponseEntity.ok(new AuthToken(jwtProvider.generateJwtToken(authentication)));
+    UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
+    if (userPrincipal.getTenantName().equals(loginRequest.getTenantName())) {
+      SecurityContextHolder.getContext().setAuthentication(authentication);
+      return ResponseEntity.ok(new AuthToken(jwtProvider.generateJwtToken(authentication)));
+    } else {
+      throw new UsernameNotFoundException("You are not registered to this tenant");
+    }
   }
 
   @PostMapping("/signup")
@@ -139,7 +146,7 @@ public class AuthenticationResource {
    * No Need to use it now
    */
   @PostMapping(value = "/confirmToken")
-  public ResponseEntity<?> register(@RequestBody AuthToken token)
+  public ResponseEntity<?> confirmToken(@RequestBody AuthToken token)
       throws AuthenticationException {
 
     return ResponseEntity.ok(!jwtProvider.validateJwtToken(token.getToken()));

@@ -35,8 +35,8 @@ public class Student extends AuditModel {
   @Column(name = "student_id")
   private String studentId;
 
-  @Column(name = "role_number", unique = true)
-  private String roleNumber;
+  @Column(name = "roll_number", unique = true)
+  private String rollNumber;
 
   @Column(name = "degree")
   private String degree;

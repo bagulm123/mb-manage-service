@@ -19,7 +19,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface StudentService {
 
-  boolean existsByRoleNumber(String roleNumber);
+  boolean existsByRollNumber(String rollNumber);
 
   Student save(Student student);
 
