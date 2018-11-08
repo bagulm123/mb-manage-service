@@ -65,7 +65,7 @@ public final class PaginationUtil {
       throw new RuntimeException(e);
     }
     HttpHeaders headers = new HttpHeaders();
-    headers.add("X-Total-Count", Long.toString(page.getTotalElements()));
+    headers.add(X_TOTAL_COUNT, Long.toString(page.getTotalElements()));
     String link = "";
     if ((page.getNumber() + 1) < page.getTotalPages()) {
       link = "<" + generateUri(baseUrl, page.getNumber() + 1, page.getSize()) + "&query="

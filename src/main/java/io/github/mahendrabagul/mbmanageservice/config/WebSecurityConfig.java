@@ -11,6 +11,9 @@
 
 package io.github.mahendrabagul.mbmanageservice.config;
 
+import static io.github.mahendrabagul.mbmanageservice.util.Constants.APPLICATION_ID;
+import static io.github.mahendrabagul.mbmanageservice.util.Constants.X_TOTAL_COUNT;
+
 import io.github.mahendrabagul.mbmanageservice.security.JwtAuthEntryPoint;
 import io.github.mahendrabagul.mbmanageservice.security.JwtAuthTokenFilter;
 import io.github.mahendrabagul.mbmanageservice.security.JwtProvider;
@@ -28,6 +31,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -88,4 +94,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.addFilterBefore(authenticationJwtTokenFilter(),
         UsernamePasswordAuthenticationFilter.class);
   }
+
+  @Bean
+  public CorsFilter corsFilter() {
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.addAllowedOrigin("*");
+    config.addAllowedHeader("*");
+    config.addAllowedMethod("OPTIONS");
+    config.addAllowedMethod("GET");
+    config.addAllowedMethod("POST");
+    config.addAllowedMethod("PUT");
+    config.addAllowedMethod("DELETE");
+    config.addExposedHeader(X_TOTAL_COUNT);
+    config.addExposedHeader(APPLICATION_ID);
+
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
+  }
+
 }
