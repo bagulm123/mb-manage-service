@@ -82,13 +82,13 @@ public class CommonResource {
   private void callME() {
     //Tenant Creation
     Tenant sggs = new Tenant();
-    sggs.setTenantName("SGGS");
+    sggs.setTenantName("Shri Guru Gobind Singhji Institute of Engineering and Technology");
     sggs.setCity("Nanded");
     sggs.setType("Engineering College");
     Tenant savedSggs = tenantService.save(sggs);
 
     Tenant pict = new Tenant();
-    pict.setTenantName("PICT");
+    pict.setTenantName("Pune Institute of Computer Technology");
     pict.setCity("Pune");
     pict.setType("Engineering College");
     Tenant savedPict = tenantService.save(pict);
@@ -123,7 +123,7 @@ public class CommonResource {
     vaidya.setUserName("mvaidya");
     vaidya.setPassword("vaidya@123");
     vaidya.setTenant(savedPict);
-    vaidya.setRoles(new HashSet<>(Arrays.asList(clerk)));
+    vaidya.setRoles(new HashSet<>(Arrays.asList(clerk, senior)));
     userService.save(vaidya);
 
     User shetty = new User();

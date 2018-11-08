@@ -13,12 +13,14 @@ package io.github.mahendrabagul.mbmanageservice.service.impl;
 
 import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
 import io.github.mahendrabagul.mbmanageservice.objects.model.Tenant;
+import io.github.mahendrabagul.mbmanageservice.objects.model.User;
 import io.github.mahendrabagul.mbmanageservice.repository.StudentRepository;
 import io.github.mahendrabagul.mbmanageservice.service.StudentService;
 import io.github.mahendrabagul.mbmanageservice.service.TenantService;
 import io.github.mahendrabagul.mbmanageservice.service.UserService;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
@@ -79,13 +81,50 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public Student save(Student student) {
-    student.setRollNumber(generateRollNumber(student));
-    student.setTenant(getTenant(student));
-    return studentRepository.saveAndFlush(student);
+    return studentRepository.saveAndFlush(addMissingThings(student));
   }
 
-  private Tenant getTenant(Student student) {
-    return userService.findById(student.getCreatedBy().getUserId()).get().getTenant();
+  private Student addMissingThings(Student student) {
+    if (Objects.isNull(student.getStudentId())) {
+      student.setRollNumber(generateRollNumber(student));
+      Optional<User> byUserName = userService.findByUserName(student.getCreatedBy().getUserName());
+      if (byUserName.isPresent()) {
+        //add creator and modifier details
+        User user = byUserName.get();
+        student.setModifiedBy(user);
+        student.setCreatedBy(user);
+        //Get Tenant Id
+        String tenantId = user.getTenant().getTenantId();
+        Optional<Tenant> byId = tenantService.findById(tenantId);
+        if (byId.isPresent()) {
+          Tenant tenant = byId.get();
+          student.setTenant(tenant);
+        } else {
+          log.error("Error while fetching tenant by tenantId : {}", tenantId);
+        }
+      } else {
+        log.error("Error while fetching createdBy userId : {}", student.getCreatedBy().getUserId());
+      }
+    } else {
+      Optional<User> byUserName = userService.findByUserName(student.getModifiedBy().getUserName());
+      if (byUserName.isPresent()) {
+        //add modifier details
+        User user = byUserName.get();
+        student.setModifiedBy(user);
+        String tenantId = user.getTenant().getTenantId();
+        Optional<Tenant> byId = tenantService.findById(tenantId);
+        if (byId.isPresent()) {
+          Tenant tenant = byId.get();
+          student.setTenant(tenant);
+        } else {
+          log.error("Error while fetching tenant by tenantId : {}", tenantId);
+        }
+      } else {
+        log.error("Error while fetching modifiedBy by userId : {}",
+            student.getModifiedBy().getUserId());
+      }
+    }
+    return student;
   }
 
   @Override

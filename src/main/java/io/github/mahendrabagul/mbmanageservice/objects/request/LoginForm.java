@@ -23,7 +23,7 @@ public class LoginForm {
   private String userName;
 
   @NotBlank
-  @Size(min = 3, max = 60)
+  @Size(min = 3, max = 256)
   private String tenantName;
 
   @NotBlank

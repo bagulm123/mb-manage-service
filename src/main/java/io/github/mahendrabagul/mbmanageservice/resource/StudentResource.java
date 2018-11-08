@@ -16,6 +16,7 @@ import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
 import io.github.mahendrabagul.mbmanageservice.service.StudentService;
 import io.github.mahendrabagul.mbmanageservice.util.PaginationUtil;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -94,10 +94,10 @@ public class StudentResource {
   }
 
   @PostMapping
-  public ResponseEntity<Object> createStudent(@RequestBody Student student) {
+  public ResponseEntity<Student> createStudent(@RequestBody Student student)
+      throws URISyntaxException {
     Student savedStudent = studentService.save(student);
-    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{studentId}")
-        .buildAndExpand(savedStudent.getStudentId()).toUri();
-    return ResponseEntity.created(location).build();
+    return ResponseEntity.created(new URI(URI + "/" + savedStudent.getStudentId()))
+        .body(savedStudent);
   }
 }

@@ -27,4 +27,5 @@ public interface UserService {
 
   Optional<User> findById(String userId);
 
+  Optional<User> findByUserName(String userName);
 }
