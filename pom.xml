@@ -107,10 +107,6 @@
       <artifactId>jul-to-slf4j</artifactId>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-    </dependency>
   </dependencies>
 
   <build>
