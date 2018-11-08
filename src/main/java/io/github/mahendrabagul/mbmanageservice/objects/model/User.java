@@ -11,6 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.objects.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -72,6 +73,7 @@ public class User extends AuditModel {
 
   @NotBlank
   @Size(min = 6, max = 100)
+  @JsonIgnore
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)

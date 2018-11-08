@@ -15,6 +15,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
@@ -51,9 +52,14 @@ public class Student extends AuditModel {
   private String fullName;
 
   @OneToOne
+  @JoinColumn(name = "created_by")
   private User createdBy;
 
   @OneToOne
+  @JoinColumn(name = "modified_by")
   private User modifiedBy;
 
+  @OneToOne
+  @JoinColumn(name = "tenant_id")
+  private Tenant tenant;
 }

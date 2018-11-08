@@ -17,17 +17,21 @@ import io.github.mahendrabagul.mbmanageservice.service.UserService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
   private UserRepository userRepository;
+  private PasswordEncoder passwordEncoder;
 
   @Autowired
   public UserServiceImpl(
-      UserRepository userRepository) {
+      UserRepository userRepository,
+      PasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
   }
 
   @Override
@@ -42,7 +46,8 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public void save(User user) {
-    userRepository.save(user);
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    userRepository.saveAndFlush(user);
   }
 
   @Override

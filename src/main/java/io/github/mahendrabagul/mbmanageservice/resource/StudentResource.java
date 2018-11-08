@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -65,9 +66,10 @@ public class StudentResource {
   }
 
   @GetMapping
-  public ResponseEntity<List<Student>> getAllStudents(Pageable pageable) {
-    log.debug("REST request to get a page of Students : " + pageable);
-    Page<Student> page = studentService.findAll(pageable);
+  public ResponseEntity<List<Student>> getAllStudents(Pageable pageable,
+      @RequestParam String tenantId) {
+    log.debug("REST request to get a page of Students : {} by tenantId : {}", pageable, tenantId);
+    Page<Student> page = studentService.findByTenant(pageable, tenantId);
     HttpHeaders headers = PaginationUtil
         .generatePaginationHttpHeaders(page, String.format(URI));
     return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

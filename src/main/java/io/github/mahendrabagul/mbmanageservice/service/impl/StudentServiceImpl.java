@@ -12,26 +12,37 @@
 package io.github.mahendrabagul.mbmanageservice.service.impl;
 
 import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
+import io.github.mahendrabagul.mbmanageservice.objects.model.Tenant;
 import io.github.mahendrabagul.mbmanageservice.repository.StudentRepository;
 import io.github.mahendrabagul.mbmanageservice.service.StudentService;
+import io.github.mahendrabagul.mbmanageservice.service.TenantService;
+import io.github.mahendrabagul.mbmanageservice.service.UserService;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class StudentServiceImpl implements StudentService {
 
   private StudentRepository studentRepository;
+  private TenantService tenantService;
+  private UserService userService;
 
   @Autowired
   public StudentServiceImpl(
-      StudentRepository studentRepository) {
+      StudentRepository studentRepository,
+      TenantService tenantService,
+      UserService userService) {
     this.studentRepository = studentRepository;
+    this.tenantService = tenantService;
+    this.userService = userService;
   }
 
   @Override
@@ -67,7 +78,12 @@ public class StudentServiceImpl implements StudentService {
   @Override
   public Student save(Student student) {
     student.setRollNumber(generateRollNumber(student));
-    return studentRepository.save(student);
+    student.setTenant(getTenant(student));
+    return studentRepository.saveAndFlush(student);
+  }
+
+  private Tenant getTenant(Student student) {
+    return userService.findById(student.getCreatedBy().getUserId()).get().getTenant();
   }
 
   @Override
@@ -81,8 +97,8 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public Page<Student> findAll(Pageable pageable) {
-    return studentRepository.findAll(pageable);
+  public Page<Student> findByTenant(Pageable pageable, String tenantId) {
+    return studentRepository.findByTenant_TenantId(pageable, tenantId);
   }
 
   @Override

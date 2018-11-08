@@ -32,7 +32,7 @@ public class TenantServiceImpl implements TenantService {
 
   @Override
   public Tenant save(Tenant tenant) {
-    return tenantRepository.save(tenant);
+    return tenantRepository.saveAndFlush(tenant);
   }
 
   @Override

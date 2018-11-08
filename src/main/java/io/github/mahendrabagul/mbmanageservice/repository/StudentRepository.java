@@ -14,6 +14,8 @@ package io.github.mahendrabagul.mbmanageservice.repository;
 
 import io.github.mahendrabagul.mbmanageservice.objects.model.Student;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -24,4 +26,5 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
   Boolean existsByRollNumber(String rollNumber);
 
+  Page<Student> findByTenant_TenantId(Pageable pageable, String tenantId);
 }
