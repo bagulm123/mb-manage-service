@@ -62,8 +62,8 @@ public class CommonResource {
   public ResponseEntity<Map<String, Object>> getAllCommonData() {
     log.debug("REST request to get getAllCommonData");
     Map<String, Object> map = new HashMap<>();
-    map.put("years", Arrays.asList("First", "Second"));
-    map.put("degrees", Arrays.asList("B.TECH", "B.E.", "BCS", "MCS", "M.TECH", "M.E.", "PHD"));
+    map.put("years", Arrays.asList("FIRST", "SECOND"));
+    map.put("degrees", Arrays.asList("BTECH", "BE", "BCS", "MCS", "MTECH", "ME", "PHD"));
     List<Tenant> tenants = tenantService.findAll();
     List<String> tenantNames = new ArrayList<>();
     tenants.forEach(tenant -> {
@@ -136,8 +136,8 @@ public class CommonResource {
     userService.save(shetty);
 
     List<String> cities = Arrays.asList("Pune", "Nashik", "Mumbai", "Aurangabad", "Jalna");
-    List<String> degrees = Arrays.asList("B.TECH", "B.E.", "BCS", "MCS", "M.TECH", "M.E.", "PHD");
-    List<String> years = Arrays.asList("First", "Second");
+    List<String> degrees = Arrays.asList("BTECH", "BE", "BCS", "MCS", "MTECH", "ME", "PHD");
+    List<String> years = Arrays.asList("FIRST", "SECOND");
 
     // pict Student Creation
     for (int i = 0; i < 50; i++) {

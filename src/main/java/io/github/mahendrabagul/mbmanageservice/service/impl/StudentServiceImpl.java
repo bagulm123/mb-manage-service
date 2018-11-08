@@ -71,8 +71,10 @@ public class StudentServiceImpl implements StudentService {
   }
 
   private int randomNumber() {
-    Random rand = new Random();
-    return rand.nextInt(100) + 1;
+    int min = 501;
+    int max = 600;
+    Random random = new Random();
+    return random.nextInt((max - min) + 1) + min;
   }
 
   @Override

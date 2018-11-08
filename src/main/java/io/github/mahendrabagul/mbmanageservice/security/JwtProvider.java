@@ -11,6 +11,7 @@
 
 package io.github.mahendrabagul.mbmanageservice.security;
 
+import io.github.mahendrabagul.mbmanageservice.service.TenantService;
 import io.github.mahendrabagul.mbmanageservice.util.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -22,6 +23,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -37,11 +39,21 @@ public class JwtProvider {
   @Value("${mb.manage.app.jwtIssuer}")
   private String issuer;
 
+  private TenantService tenantService;
+
+  @Autowired
+  public JwtProvider(TenantService tenantService) {
+    this.tenantService = tenantService;
+  }
+
+
   public String generateJwtToken(Authentication authentication) {
     UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
     Claims claims = Jwts.claims().setSubject(userPrincipal.getUsername());
     claims.put("scopes", userPrincipal.getAuthorities());
     claims.put("tenantName", userPrincipal.getTenantName());
+    claims.put("tenantId",
+        tenantService.findByTenantName(userPrincipal.getTenantName()).get().getTenantId());
     return Jwts.builder()
         .setClaims(claims)
         .setIssuer(issuer)
