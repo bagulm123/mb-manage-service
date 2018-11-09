@@ -130,12 +130,14 @@ public class CommonResource {
     shetty.setFullName("Nitin Pawar");
     shetty.setEmail("npawar@pict.ac.in");
     shetty.setUserName("npawar");
-    shetty.setPassword("nitin@123");
+    shetty.setPassword("pawar@123");
     shetty.setTenant(savedPict);
     shetty.setRoles(new HashSet<>(Arrays.asList(clerk)));
     userService.save(shetty);
 
-    List<String> cities = Arrays.asList("Pune", "Nashik", "Mumbai", "Aurangabad", "Jalna");
+    List<String> cities = Arrays
+        .asList("Pune", "Nashik", "Mumbai", "Aurangabad", "Jalna", "Ahmed Nagar", "Latur", "Beed",
+            "Parbhani", "Navi Mumbai", "Solapur", "Dhule");
     List<String> degrees = Arrays.asList("BTECH", "BE", "BCS", "MCS", "MTECH", "ME", "PHD");
     List<String> years = Arrays.asList("FIRST", "SECOND");
 
