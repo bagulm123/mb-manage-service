@@ -100,37 +100,37 @@ public class CommonResource {
 
     //User Creation
     User pakale = new User();
-    pakale.setFullName("Ganesh Pakale");
-    pakale.setEmail("gpakale@sggs.ac.in");
-    pakale.setUserName("gpakale");
-    pakale.setPassword("pakale@123");
+    pakale.setFullName("Deepak Sonawane");
+    pakale.setEmail("dsonawane@sggs.ac.in");
+    pakale.setUserName("dsonawane");
+    pakale.setPassword("sonawane@123");
     pakale.setTenant(savedSggs);
     pakale.setRoles(new HashSet<>(Arrays.asList(clerk, senior)));
     userService.save(pakale);
 
     User navedeti = new User();
-    navedeti.setFullName("Chandrakant Navedeti");
-    navedeti.setEmail("cnavedeti@sggs.ac.in");
-    navedeti.setUserName("cnavedeti");
-    navedeti.setPassword("navedeti@123");
+    navedeti.setFullName("Suresh Pagar");
+    navedeti.setEmail("spagar@sggs.ac.in");
+    navedeti.setUserName("spagar");
+    navedeti.setPassword("pagar@123");
     navedeti.setTenant(savedSggs);
     navedeti.setRoles(new HashSet<>(Arrays.asList(clerk)));
     userService.save(navedeti);
 
     User vaidya = new User();
-    vaidya.setFullName("Madhav Vaidya");
-    vaidya.setEmail("mvaidya@pict.ac.in");
-    vaidya.setUserName("mvaidya");
-    vaidya.setPassword("vaidya@123");
+    vaidya.setFullName("Suraj Tambe");
+    vaidya.setEmail("stambe@pict.ac.in");
+    vaidya.setUserName("stambe");
+    vaidya.setPassword("tambe@123");
     vaidya.setTenant(savedPict);
     vaidya.setRoles(new HashSet<>(Arrays.asList(clerk, senior)));
     userService.save(vaidya);
 
     User shetty = new User();
-    shetty.setFullName("Balaji Shetty");
-    shetty.setEmail("bshetty@pict.ac.in");
-    shetty.setUserName("bshetty");
-    shetty.setPassword("shetty@123");
+    shetty.setFullName("Nitin Pawar");
+    shetty.setEmail("npawar@pict.ac.in");
+    shetty.setUserName("npawar");
+    shetty.setPassword("nitin@123");
     shetty.setTenant(savedPict);
     shetty.setRoles(new HashSet<>(Arrays.asList(clerk)));
     userService.save(shetty);
