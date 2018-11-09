@@ -60,11 +60,6 @@ public class StudentResource {
     return studentOptional.get();
   }
 
-  @GetMapping("/list")
-  public List<Student> findStudents() {
-    return studentService.findAll();
-  }
-
   @GetMapping
   public ResponseEntity<List<Student>> getAllStudents(Pageable pageable,
       @RequestParam String tenantId, @RequestParam String searchKeyWord) {
