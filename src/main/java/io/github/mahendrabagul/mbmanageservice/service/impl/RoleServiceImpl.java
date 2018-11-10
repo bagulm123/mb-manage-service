@@ -18,7 +18,6 @@ import io.github.mahendrabagul.mbmanageservice.service.RoleService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,7 +37,6 @@ public class RoleServiceImpl implements RoleService {
   }
 
   @Override
-  @Cacheable("roles")
   public List<Role> findAll() {
     return roleRepository.findAll();
   }
