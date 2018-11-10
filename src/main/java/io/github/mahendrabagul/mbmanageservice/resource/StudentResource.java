@@ -62,7 +62,8 @@ public class StudentResource {
 
   @GetMapping
   public ResponseEntity<List<Student>> getAllStudents(Pageable pageable,
-      @RequestParam String tenantId, @RequestParam String searchKeyWord) {
+      @RequestParam(required = false) String tenantId,
+      @RequestParam(required = false) String searchKeyWord) {
     log.debug(
         "REST request to get a page of Students : {} by tenantId : {} and optional searchString : {}",
         pageable, tenantId, searchKeyWord);

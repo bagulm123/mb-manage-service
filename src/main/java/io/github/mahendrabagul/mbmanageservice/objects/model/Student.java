@@ -56,8 +56,8 @@ public class Student extends AuditModel {
   private User createdBy;
 
   @OneToOne
-  @JoinColumn(name = "modified_by")
-  private User modifiedBy;
+  @JoinColumn(name = "updated_by")
+  private User updatedBy;
 
   @OneToOne
   @JoinColumn(name = "tenant_id")

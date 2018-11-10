@@ -158,10 +158,10 @@ public class CommonResource {
       student.setFullName("PICT Student's full Name " + (i + 1));
       if (i % 2 == 0) {
         student.setCreatedBy(vaidya);
-        student.setModifiedBy(vaidya);
+        student.setUpdatedBy(vaidya);
       } else {
         student.setCreatedBy(shetty);
-        student.setModifiedBy(shetty);
+        student.setUpdatedBy(shetty);
       }
       studentService.save(student);
     }
@@ -183,10 +183,10 @@ public class CommonResource {
       student.setFullName("Sggs Student's full Name " + (i + 1));
       if (i % 2 == 0) {
         student.setCreatedBy(pakale);
-        student.setModifiedBy(pakale);
+        student.setUpdatedBy(pakale);
       } else {
         student.setCreatedBy(navedeti);
-        student.setModifiedBy(navedeti);
+        student.setUpdatedBy(navedeti);
       }
       studentService.save(student);
     }

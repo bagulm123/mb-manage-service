@@ -90,9 +90,9 @@ public class StudentServiceImpl implements StudentService {
       student.setRollNumber(generateRollNumber(student));
       Optional<User> byUserName = userService.findByUserName(student.getCreatedBy().getUserName());
       if (byUserName.isPresent()) {
-        //add creator and modifier details
+        //add creator and updater details
         User user = byUserName.get();
-        student.setModifiedBy(user);
+        student.setUpdatedBy(user);
         student.setCreatedBy(user);
         //Get Tenant Id
         String tenantId = user.getTenant().getTenantId();
@@ -107,11 +107,11 @@ public class StudentServiceImpl implements StudentService {
         log.error("Error while fetching createdBy userId : {}", student.getCreatedBy().getUserId());
       }
     } else {
-      Optional<User> byUserName = userService.findByUserName(student.getModifiedBy().getUserName());
+      Optional<User> byUserName = userService.findByUserName(student.getUpdatedBy().getUserName());
       if (byUserName.isPresent()) {
-        //add modifier details
+        //add updater details
         User user = byUserName.get();
-        student.setModifiedBy(user);
+        student.setUpdatedBy(user);
         String tenantId = user.getTenant().getTenantId();
         Optional<Tenant> byId = tenantService.findById(tenantId);
         if (byId.isPresent()) {
@@ -121,8 +121,8 @@ public class StudentServiceImpl implements StudentService {
           log.error("Error while fetching tenant by tenantId : {}", tenantId);
         }
       } else {
-        log.error("Error while fetching modifiedBy by userId : {}",
-            student.getModifiedBy().getUserId());
+        log.error("Error while fetching update by userId : {}",
+            student.getUpdatedBy().getUserId());
       }
     }
     return student;
