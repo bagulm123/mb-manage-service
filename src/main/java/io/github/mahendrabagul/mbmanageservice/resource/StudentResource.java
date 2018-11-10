@@ -22,6 +22,7 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -67,7 +68,8 @@ public class StudentResource {
     log.debug(
         "REST request to get a page of Students : {} by tenantId : {} and optional searchString : {}",
         pageable, tenantId, searchKeyWord);
-    Page<Student> page = studentService.findByTenant(pageable, tenantId, searchKeyWord);
+    PageRequest request = PaginationUtil.generatePageRequest(pageable);
+    Page<Student> page = studentService.findByTenant(request, tenantId, searchKeyWord);
     HttpHeaders headers = PaginationUtil
         .generatePaginationHttpHeaders(page, String.format(URI));
     return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

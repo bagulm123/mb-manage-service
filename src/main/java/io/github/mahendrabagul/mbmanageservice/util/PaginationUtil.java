@@ -16,6 +16,9 @@ import static io.github.mahendrabagul.mbmanageservice.util.Constants.X_TOTAL_COU
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -87,6 +90,11 @@ public final class PaginationUtil {
         + ">; rel=\"first\"";
     headers.add(HttpHeaders.LINK, link);
     return headers;
+  }
+
+  public static PageRequest generatePageRequest(Pageable pageable) {
+    return PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+        Sort.Direction.ASC, "createdAt");
   }
 }
 
